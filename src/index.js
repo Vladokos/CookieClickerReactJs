@@ -118,29 +118,6 @@ class Store extends React.Component {
     );
   }
 }
-// function Store(props) {
-//   function buyHelperOne() {
-//     props.storeIsOpen = false;
-//   }
 
-//   return (
-//     <div className={props.storeIsOpen ? "storeActive" : "store"}>
-//       <p>{props.currency}</p>
-//       <h2>Store</h2>
-//       <section>
-//         <p>Products</p>
-//         <li>
-//           <ul>
-//             <button onClick={buyHelperOne}>
-//               Buy helper +1 click one seconds
-//             </button>
-//           </ul>
-//           <ul>-</ul>
-//           <ul>-</ul>
-//         </li>
-//       </section>
-//     </div>
-//   );
-// }
 
 ReactDOM.render(<InitialMenu />, document.getElementById("root"));
