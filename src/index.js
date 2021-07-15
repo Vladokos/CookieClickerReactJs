@@ -140,7 +140,7 @@ class Store extends React.Component {
 //         </li>
 //       </section>
 //     </div>
-//   )
+//   );
 // }
 
 ReactDOM.render(<InitialMenu />, document.getElementById("root"));
