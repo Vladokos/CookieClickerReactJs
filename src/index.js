@@ -97,9 +97,9 @@ class InitialMenu extends React.Component {
 }
 
 const prices = {
-  oneHelper: 1,
-  twoHelpers: 2,
-  threeHelpers: 3,
+  oneHelper: 2,
+  twoHelpers: 3,
+  threeHelpers: 10,
 };
 const numberOfAssistants = {
   oneHelper: 1,
@@ -123,9 +123,10 @@ class Store extends React.Component {
       this.setState((state) => ({
         value: (state.value = this.props.currency) - e,
       }));
-
+      console.log(prices.oneHelper);
       let objectKeyPrice = Object.keys(prices).find((key) => prices[key] === e);
-      prices[objectKeyPrice] *= e + 1;
+      console.log(objectKeyPrice);
+      prices[objectKeyPrice] *= e;
     } else {
       //change on popup window !
       alert("you dont have cookies");
