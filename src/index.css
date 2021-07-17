@@ -6,22 +6,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+li{
+  list-style-type: none;
+}
+ul{
+  padding: 0;
+}
+
 .store {
   visibility: hidden;
 }
 .storeActive {
   visibility: visible;
 }
-.btnD {
-}
-.btnG {
-  color: green;
-}
+
+
+
 .popupBalance {
   visibility: hidden;
   position: absolute;
@@ -40,7 +44,20 @@ code {
     top: 40%;
   }
 }
-
 .hide {
   visibility: hidden;
+}
+
+.initinalMenu{
+  margin: 0 0 0 50%;
+}
+.cookieBtn{
+  outline: none; 
+  border: 0;
+  background: transparent;
+}
+.storeBtn{
+  outline: none; 
+  border: 0;
+  background: transparent;
 }

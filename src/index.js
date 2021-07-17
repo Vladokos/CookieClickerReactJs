@@ -2,9 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import cookieImage from "../src/img/cookieImg.png";
+import storeImage from "../src/img/storeImg.png";
 // import store from "./store";
-
-//class Store improt on different js file
 
 class InitialMenu extends React.Component {
   constructor(props) {
@@ -69,28 +68,29 @@ class InitialMenu extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Cookie clicker</h1>
-        <p>You have {this.state.currency} cookies</p>
+      <div className="initinalMenu">
+        <div className="titleMenu">
+          <h1>Cookie clicker</h1>
+          <p>You have {this.state.currency} cookies</p>
+        </div>
         <section>
-          <button onClick={this.clicksOnCookie}>
-            <img src={cookieImage} alt={"logo"}></img>
+          <button onClick={this.clicksOnCookie} className="cookieBtn" >
+            <img src={cookieImage} alt={"cookie"}></img>
           </button>
-        </section>
-        <section>
+
           <button
-            className={this.state.storeIsOpen ? "btnG" : "btnD"}
+            className="storeBtn"
             onClick={this.clicksStore}
           >
-            store
+            <img src={storeImage} alt={"store"}></img>
           </button>
-          <Store
-            currency={this.state.currency}
-            storeIsOpen={this.state.storeIsOpen}
-            changeCurrency={this.changeCurrency}
-            increaseHelpers={this.increaseHelpers}
-          />
         </section>
+        <Store
+          currency={this.state.currency}
+          storeIsOpen={this.state.storeIsOpen}
+          changeCurrency={this.changeCurrency}
+          increaseHelpers={this.increaseHelpers}
+        />
       </div>
     );
   }
@@ -107,6 +107,7 @@ const numberOfAssistants = {
   threeHelpers: 3,
 };
 
+//class Store improt on different js file
 class Store extends React.Component {
   constructor(props) {
     super(props);
@@ -169,72 +170,76 @@ class Store extends React.Component {
   render() {
     return (
       <div className={this.props.storeIsOpen ? "storeActive" : "store"}>
-        <h2>Store</h2>
-        <p>Your cookies: {this.props.currency}</p>
+        <div className="titleStore">
+          <h2>Store</h2>
+          <p>Your cookies: {this.props.currency}</p>
+        </div>
         <section>
-          <p>Products</p>
-          <li>
-            <ul>
-              Cost: {prices.oneHelper} cookies
-              <br />
-              <button
-                onClick={() => {
-                  this.props.increaseHelpers(
-                    numberOfAssistants.oneHelper,
-                    prices.oneHelper
-                  );
-                  this.props.changeCurrency(prices.oneHelper);
-                  this.buyHelper(
-                    prices.oneHelper,
-                    numberOfAssistants.oneHelper
-                  );
-                  this.timerChangeName();
-                }}
-              >
-                Buy helper +1 click one seconds
-              </button>
-            </ul>
-            <ul>
-              Cost: {prices.twoHelpers} cookies
-              <br />
-              <button
-                onClick={() => {
-                  this.props.increaseHelpers(
-                    numberOfAssistants.twoHelpers,
-                    prices.twoHelpers
-                  );
-                  this.props.changeCurrency(prices.twoHelpers);
-                  this.buyHelper(
-                    prices.twoHelpers,
-                    numberOfAssistants.twoHelpers
-                  );
-                  this.timerChangeName();
-                }}
-              >
-                Buy helper +2 click one seconds
-              </button>
-            </ul>
-            <ul>
-              Cost: {prices.threeHelpers} cookies
-              <br />
-              <button
-                onClick={() => {
-                  this.props.increaseHelpers(
-                    numberOfAssistants.threeHelpers,
-                    prices.threeHelpers
-                  );
-                  this.props.changeCurrency(prices.threeHelpers);
-                  this.buyHelper(
-                    prices.threeHelpers,
-                    numberOfAssistants.threeHelpers
-                  );
-                  this.timerChangeName();
-                }}
-              >
-                Buy helper +3 click one seconds
-              </button>
-            </ul>
-          </li>
+          <p>Products:</p>
+          <div className="products">
+            <li>
+              <ul>
+                Cost: {prices.oneHelper} cookies
+                <br />
+                <button
+                  onClick={() => {
+                    this.props.increaseHelpers(
+                      numberOfAssistants.oneHelper,
+                      prices.oneHelper
+                    );
+                    this.props.changeCurrency(prices.oneHelper);
+                    this.buyHelper(
+                      prices.oneHelper,
+                      numberOfAssistants.oneHelper
+                    );
+                    this.timerChangeName();
+                  }}
+                >
+                  Buy helper +1 click one seconds
+                </button>
+              </ul>
+              <ul>
+                Cost: {prices.twoHelpers} cookies
+                <br />
+                <button
+                  onClick={() => {
+                    this.props.increaseHelpers(
+                      numberOfAssistants.twoHelpers,
+                      prices.twoHelpers
+                    );
+                    this.props.changeCurrency(prices.twoHelpers);
+                    this.buyHelper(
+                      prices.twoHelpers,
+                      numberOfAssistants.twoHelpers
+                    );
+                    this.timerChangeName();
+                  }}
+                >
+                  Buy helper +2 click one seconds
+                </button>
+              </ul>
+              <ul>
+                Cost: {prices.threeHelpers} cookies
+                <br />
+                <button
+                  onClick={() => {
+                    this.props.increaseHelpers(
+                      numberOfAssistants.threeHelpers,
+                      prices.threeHelpers
+                    );
+                    this.props.changeCurrency(prices.threeHelpers);
+                    this.buyHelper(
+                      prices.threeHelpers,
+                      numberOfAssistants.threeHelpers
+                    );
+                    this.timerChangeName();
+                  }}
+                >
+                  Buy helper +3 click one seconds
+                </button>
+              </ul>
+            </li>
+          </div>
         </section>
         <div
           className={this.state.haveCookies === true ? "hide" : "popupBalance"}
