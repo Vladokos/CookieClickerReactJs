@@ -31,26 +31,26 @@ class InitialMenu extends React.Component {
   }
 
   clicksStore() {
-    this.setState({
-      storeIsOpen: !this.state.storeIsOpen,
-    });
+    this.setState((state) => ({
+      storeIsOpen: !state.storeIsOpen,
+    }));
   }
 
-  changeCurrency(e) {
-    if (this.state.currency > 0 && this.state.currency - e >= 0) {
+  changeCurrency(priceHelpers) {
+    if (this.state.currency > 0 && this.state.currency - priceHelpers >= 0) {
       this.setState((state) => ({
-        currency: state.currency - e,
+        currency: state.currency - priceHelpers,
       }));
     }
   }
 
-  increaseHelpers(e) {
-    if (this.state.currency > 0 && this.state.currency - e >= 0) {
+  increaseHelpers(quantityHelpers, priceHelpers) {
+    if (this.state.currency > 0 && this.state.currency - priceHelpers >= 0) {
       if (this.state.helpers < 1) {
         this.timersClick();
       }
-      return this.setState((state) => ({
-        helpers: (state.helpers += e),
+      this.setState((state) => ({
+        helpers: (state.helpers += quantityHelpers),
       }));
     }
   }
@@ -64,7 +64,7 @@ class InitialMenu extends React.Component {
   }
 
   timersClick() {
-    this.timerID = setInterval(() => this.helpClick(), 1000);
+    this.timerClickID = setInterval(() => this.helpClick(), 1000);
   }
 
   render() {
@@ -113,33 +113,64 @@ class Store extends React.Component {
 
     this.state = {
       value: 0,
+      haveCookies: true,
+      isClicked: false,
     };
 
     this.buyHelper = this.buyHelper.bind(this);
+    this.timerChangeName = this.timerChangeName.bind(this);
+    this.timerReload = this.timerReload.bind(this);
   }
 
-  buyHelper(e, v) {
-    if (this.props.currency > 0 && this.props.currency - e >= 0) {
+  buyHelper(priceHelpers, nameHelpres) {
+    if (this.props.currency > 0 && this.props.currency - priceHelpers >= 0) {
       this.setState((state) => ({
-        value: (state.value = this.props.currency) - e,
+        value: (state.value = this.props.currency) - priceHelpers,
+        haveCookies: (state.haveCookies = true),
       }));
 
       let objectKeyPrice = Object.keys(numberOfAssistants).find(
-        (key) => numberOfAssistants[key] === v
+        (key) => numberOfAssistants[key] === nameHelpres
       );
-      prices[objectKeyPrice] *= e;
+      prices[objectKeyPrice] *= priceHelpers;
     } else {
       this.setState((state) => ({
-        value: (state.value = -1),
+        haveCookies: (state.haveCookies = false),
       }));
     }
+  }
+
+  timerChangeName() {
+    if (!this.state.isClicked && this.props.currency === 0) {
+      this.timerChangeNameID = setTimeout(
+        () =>
+          this.setState((state) => ({
+            haveCookies: (state.haveCookies = true),
+          })),
+        2000
+      );
+      this.setState((state) => ({
+        isClicked: !state.isClicked,
+      }));
+      this.timerReload();
+    }
+  }
+
+  timerReload() {
+    this.timerReloadID = setTimeout(
+      () =>
+        this.setState((state) => ({
+          isClicked: !state.isClicked,
+        })),
+      2000
+    );
   }
 
   render() {
     return (
       <div className={this.props.storeIsOpen ? "storeActive" : "store"}>
-        <p>{this.props.value}</p>
         <h2>Store</h2>
+        <p>Your cookies: {this.props.currency}</p>
         <section>
           <p>Products</p>
           <li>
@@ -148,12 +179,16 @@ class Store extends React.Component {
               <br />
               <button
                 onClick={() => {
+                  this.props.increaseHelpers(
+                    numberOfAssistants.oneHelper,
+                    prices.oneHelper
+                  );
                   this.props.changeCurrency(prices.oneHelper);
                   this.buyHelper(
                     prices.oneHelper,
                     numberOfAssistants.oneHelper
                   );
-                  this.props.increaseHelpers(numberOfAssistants.oneHelper);
+                  this.timerChangeName();
                 }}
               >
                 Buy helper +1 click one seconds
@@ -164,12 +199,16 @@ class Store extends React.Component {
               <br />
               <button
                 onClick={() => {
+                  this.props.increaseHelpers(
+                    numberOfAssistants.twoHelpers,
+                    prices.twoHelpers
+                  );
                   this.props.changeCurrency(prices.twoHelpers);
                   this.buyHelper(
                     prices.twoHelpers,
                     numberOfAssistants.twoHelpers
                   );
-                  this.props.increaseHelpers(numberOfAssistants.twoHelpers);
+                  this.timerChangeName();
                 }}
               >
                 Buy helper +2 click one seconds
@@ -180,12 +219,16 @@ class Store extends React.Component {
               <br />
               <button
                 onClick={() => {
+                  this.props.increaseHelpers(
+                    numberOfAssistants.threeHelpers,
+                    prices.threeHelpers
+                  );
                   this.props.changeCurrency(prices.threeHelpers);
                   this.buyHelper(
                     prices.threeHelpers,
                     numberOfAssistants.threeHelpers
                   );
-                  this.props.increaseHelpers(numberOfAssistants.threeHelpers);
+                  this.timerChangeName();
                 }}
               >
                 Buy helper +3 click one seconds
@@ -193,19 +236,13 @@ class Store extends React.Component {
             </ul>
           </li>
         </section>
-        {this.state.value === -1 ? (
-          <CheckBalance values={this.state.value} />
-        ) : null}
+        <div
+          className={this.state.haveCookies === true ? "hide" : "popupBalance"}
+        >
+          you dont have cookies
+        </div>
       </div>
     );
-  }
-}
-
-function CheckBalance(props) {
-  if (props.values < 0) {
-    return <div>you dont have cookies</div>;
-  } else {
-    return null;
   }
 }
 
