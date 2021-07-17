@@ -30,16 +30,46 @@ button {
   color: #fff;
 }
 .store {
-  visibility: hidden;
+  /* visibility: hidden; */
   position: absolute;
   top: 5%;
+  left: 37%;
+  background: #eaa54d;
+  z-index: 2;
+  padding: 15px;
+  animation: animCloseStore 1s forwards 1;
+  border-radius: 20px;
+}
+@keyframes animCloseStore {
+  from {
+    opacity: 1;
+    top: 5%;
+  }
+  to {
+    opacity: 0;
+    top: 0%;
+  }
 }
 .storeActive {
   visibility: visible;
   position: absolute;
   top: 5%;
-  background: rgb(196, 162, 14);
+  left: 37%;
+  background: #eaa54d;
   z-index: 2;
+  padding: 15px;
+  animation: animOpenStore 1s linear 1;
+  border-radius: 20px;
+}
+@keyframes animOpenStore {
+  from {
+    opacity: 0;
+    top: 0%;
+  }
+  to {
+    opacity: 1;
+    top: 5%;
+  }
 }
 
 .popupBalance {
@@ -84,37 +114,40 @@ button {
 }
 .priceOneHelper {
   margin: 0 0 0 0;
-  width: 107px;
+  width: 138px;
   color: black;
   background: white;
   border-radius: 5px;
   position: absolute;
-  top: 141px;
+  top: 154px;
   z-index: -1;
   padding: 10px;
-  left: 1px;
+  left: 18px;
 }
 .priceTwoHelper {
   margin: 0 0 0 0;
-  width: 107px;
+  width: 138px;
   color: black;
   background: white;
   border-radius: 5px;
   position: absolute;
-  top: 218px;
+  top: 229px;
   z-index: -1;
   padding: 10px;
-  left: 1px;
+  left: 18px;
+}
+.titleStore {
+  text-align: center;
 }
 .priceThreeHelper {
   margin: 0 0 0 0;
-  width: 107px;
+  width: 138px;
   color: black;
   background: white;
   border-radius: 5px;
   position: absolute;
-  top: 291px;
+  top: 305px;
   z-index: -1;
   padding: 10px;
-  left: 1px;
+  left: 18px;
 }
