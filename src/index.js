@@ -99,7 +99,7 @@ class InitialMenu extends React.Component {
 const prices = {
   oneHelper: 2,
   twoHelpers: 3,
-  threeHelpers: 10,
+  threeHelpers: 5,
 };
 const numberOfAssistants = {
   oneHelper: 1,
@@ -118,18 +118,20 @@ class Store extends React.Component {
     this.buyHelper = this.buyHelper.bind(this);
   }
 
-  buyHelper(e) {
+  buyHelper(e, v) {
     if (this.props.currency > 0 && this.props.currency - e >= 0) {
       this.setState((state) => ({
         value: (state.value = this.props.currency) - e,
       }));
-      console.log(prices.oneHelper);
-      let objectKeyPrice = Object.keys(prices).find((key) => prices[key] === e);
-      console.log(objectKeyPrice);
+
+      let objectKeyPrice = Object.keys(numberOfAssistants).find(
+        (key) => numberOfAssistants[key] === v
+      );
       prices[objectKeyPrice] *= e;
     } else {
-      //change on popup window !
-      alert("you dont have cookies");
+      this.setState((state) => ({
+        value: (state.value = -1),
+      }));
     }
   }
 
@@ -147,7 +149,10 @@ class Store extends React.Component {
               <button
                 onClick={() => {
                   this.props.changeCurrency(prices.oneHelper);
-                  this.buyHelper(prices.oneHelper);
+                  this.buyHelper(
+                    prices.oneHelper,
+                    numberOfAssistants.oneHelper
+                  );
                   this.props.increaseHelpers(numberOfAssistants.oneHelper);
                 }}
               >
@@ -160,7 +165,10 @@ class Store extends React.Component {
               <button
                 onClick={() => {
                   this.props.changeCurrency(prices.twoHelpers);
-                  this.buyHelper(prices.twoHelpers);
+                  this.buyHelper(
+                    prices.twoHelpers,
+                    numberOfAssistants.twoHelpers
+                  );
                   this.props.increaseHelpers(numberOfAssistants.twoHelpers);
                 }}
               >
@@ -173,7 +181,10 @@ class Store extends React.Component {
               <button
                 onClick={() => {
                   this.props.changeCurrency(prices.threeHelpers);
-                  this.buyHelper(prices.threeHelpers);
+                  this.buyHelper(
+                    prices.threeHelpers,
+                    numberOfAssistants.threeHelpers
+                  );
                   this.props.increaseHelpers(numberOfAssistants.threeHelpers);
                 }}
               >
@@ -182,8 +193,19 @@ class Store extends React.Component {
             </ul>
           </li>
         </section>
+        {this.state.value === -1 ? (
+          <CheckBalance values={this.state.value} />
+        ) : null}
       </div>
     );
+  }
+}
+
+function CheckBalance(props) {
+  if (props.values < 0) {
+    return <div>you dont have cookies</div>;
+  } else {
+    return null;
   }
 }
 
