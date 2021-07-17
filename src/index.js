@@ -74,14 +74,15 @@ class InitialMenu extends React.Component {
           <p>You have {this.state.currency} cookies</p>
         </div>
         <section>
-          <button onClick={this.clicksOnCookie} className="cookieBtn" >
-            <img src={cookieImage} alt={"cookie"}></img>
+          <button onClick={this.clicksOnCookie} className="cookieBtn">
+            <img
+              src={cookieImage}
+              alt={"cookie"}
+              className="cookieBtnImg"
+            ></img>
           </button>
 
-          <button
-            className="storeBtn"
-            onClick={this.clicksStore}
-          >
+          <button className="storeBtn" onClick={this.clicksStore}>
             <img src={storeImage} alt={"store"}></img>
           </button>
         </section>
@@ -179,8 +180,9 @@ class Store extends React.Component {
           <div className="products">
             <li>
               <ul>
-                Cost: {prices.oneHelper} cookies
-                <br />
+                <p className="priceOneHelper">
+                  Cost: {prices.oneHelper} cookies
+                </p>
                 <button
                   onClick={() => {
                     this.props.increaseHelpers(
@@ -194,13 +196,15 @@ class Store extends React.Component {
                     );
                     this.timerChangeName();
                   }}
+                  className="btnStore"
                 >
                   Buy helper +1 click one seconds
                 </button>
               </ul>
               <ul>
-                Cost: {prices.twoHelpers} cookies
-                <br />
+                <p className="priceTwoHelper">
+                  Cost: {prices.twoHelpers} cookies
+                </p>
                 <button
                   onClick={() => {
                     this.props.increaseHelpers(
@@ -214,13 +218,15 @@ class Store extends React.Component {
                     );
                     this.timerChangeName();
                   }}
+                  className="btnStore"
                 >
                   Buy helper +2 click one seconds
                 </button>
               </ul>
               <ul>
-                Cost: {prices.threeHelpers} cookies
-                <br />
+                <p className="priceThreeHelper">
+                  Cost: {prices.threeHelpers} cookies
+                </p>
                 <button
                   onClick={() => {
                     this.props.increaseHelpers(
@@ -234,6 +240,7 @@ class Store extends React.Component {
                     );
                     this.timerChangeName();
                   }}
+                  className="btnStore"
                 >
                   Buy helper +3 click one seconds
                 </button>

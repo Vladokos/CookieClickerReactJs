@@ -5,33 +5,49 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(./img/milkbg.jpg);
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-li{
+li {
   list-style-type: none;
 }
-ul{
+ul {
   padding: 0;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
-
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
 .store {
   visibility: hidden;
+  position: absolute;
+  top: 5%;
 }
 .storeActive {
   visibility: visible;
+  position: absolute;
+  top: 5%;
+  background: rgb(196, 162, 14);
+  z-index: 2;
 }
-
-
 
 .popupBalance {
   visibility: hidden;
   position: absolute;
   top: 50%;
   left: 50%;
-  animation: transparency 1s linear 1 ;
+  animation: transparency 1s linear 1;
 }
 @keyframes transparency {
   from {
@@ -48,16 +64,57 @@ ul{
   visibility: hidden;
 }
 
-.initinalMenu{
+.initinalMenu {
   margin: 0 0 0 50%;
 }
-.cookieBtn{
-  outline: none; 
+
+.cookieBtnImg:active {
+  width: 98%;
+}
+
+.products {
+  outline: none;
   border: 0;
   background: transparent;
 }
-.storeBtn{
-  outline: none; 
-  border: 0;
-  background: transparent;
+.btnStore {
+  background: #d87d2e;
+  border-radius: 30px;
+  padding: 10px;
+}
+.priceOneHelper {
+  margin: 0 0 0 0;
+  width: 107px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 141px;
+  z-index: -1;
+  padding: 10px;
+  left: 1px;
+}
+.priceTwoHelper {
+  margin: 0 0 0 0;
+  width: 107px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 218px;
+  z-index: -1;
+  padding: 10px;
+  left: 1px;
+}
+.priceThreeHelper {
+  margin: 0 0 0 0;
+  width: 107px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 291px;
+  z-index: -1;
+  padding: 10px;
+  left: 1px;
 }
