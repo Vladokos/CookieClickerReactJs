@@ -81,8 +81,8 @@ class Store extends React.Component {
         <section>
           <p>Products:</p>
           <div className="products">
-            <li>
-              <ul>
+            <ul>
+              <li>
                 <p className="priceOneHelper">
                   Cost: {prices.oneHelper} cookies
                 </p>
@@ -103,8 +103,8 @@ class Store extends React.Component {
                 >
                   Buy helper +1 click one seconds
                 </button>
-              </ul>
-              <ul>
+              </li>
+              <li>
                 <p className="priceTwoHelper">
                   Cost: {prices.twoHelpers} cookies
                 </p>
@@ -125,8 +125,8 @@ class Store extends React.Component {
                 >
                   Buy helper +2 click one seconds
                 </button>
-              </ul>
-              <ul>
+              </li>
+              <li>
                 <p className="priceThreeHelper">
                   Cost: {prices.threeHelpers} cookies
                 </p>
@@ -147,8 +147,8 @@ class Store extends React.Component {
                 >
                   Buy helper +3 click one seconds
                 </button>
-              </ul>
-            </li>
+              </li>
+            </ul>
           </div>
         </section>
         <section
