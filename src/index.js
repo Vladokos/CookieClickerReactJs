@@ -115,7 +115,7 @@ class Store extends React.Component {
 
     this.state = {
       value: 0,
-      haveCookies: true,
+      haveCookies: null,
       isClicked: false,
     };
 
@@ -248,11 +248,11 @@ class Store extends React.Component {
             </li>
           </div>
         </section>
-        <div
-          className={this.state.haveCookies === true ? "hide" : "popupBalance"}
+        <section
+          className={this.state.haveCookies === true ? "hide" : this.state.haveCookies === null? "hide" : "popupBalance"}
         >
           you dont have cookies
-        </div>
+        </section>
       </div>
     );
   }

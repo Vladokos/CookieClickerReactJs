@@ -78,6 +78,7 @@ button {
   top: 50%;
   left: 50%;
   animation: transparency 1s linear 1;
+  width: 190px;
 }
 @keyframes transparency {
   from {
