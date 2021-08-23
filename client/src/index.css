@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url(./img/milkbg.jpg);
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+li {
+  list-style-type: none;
+  margin-bottom: 40px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+.store {
+  /* visibility: hidden; */
+  position: absolute;
+  top: 5%;
+  left: 37%;
+  background: #eaa54d;
+  z-index: 2;
+  padding: 15px;
+  animation: animCloseStore 1s forwards 1;
+  border-radius: 20px;
+}
+@keyframes animCloseStore {
+  from {
+    opacity: 1;
+    top: 5%;
+  }
+  to {
+    opacity: 0;
+    top: 0%;
+  }
+}
+.storeActive {
+  visibility: visible;
+  position: absolute;
+  top: 5%;
+  left: 37%;
+  background: #eaa54d;
+  z-index: 2;
+  padding: 15px;
+  animation: animOpenStore 1s linear 1;
+  border-radius: 20px;
+}
+@keyframes animOpenStore {
+  from {
+    opacity: 0;
+    top: 0%;
+  }
+  to {
+    opacity: 1;
+    top: 5%;
+  }
+}
+
+.popupBalance {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: transparency 1s linear 1;
+  width: 190px;
+}
+@keyframes transparency {
+  from {
+    visibility: visible;
+    opacity: 100%;
+    top: 50%;
+  }
+  to {
+    opacity: 0%;
+    top: 40%;
+  }
+}
+.hide {
+  visibility: hidden;
+}
+
+.initinalMenu {
+  margin: 0 0 0 50%;
+}
+
+.cookieBtnImg:active {
+  width: 98%;
+}
+
+.products {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+.btnStore {
+  background: #d87d2e;
+  border-radius: 30px;
+  padding: 10px;
+}
+.priceOneHelper {
+  margin: 0 0 0 0;
+  width: 138px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 154px;
+  z-index: -1;
+  padding: 10px;
+  left: 18px;
+}
+.priceTwoHelper {
+  margin: 0 0 0 0;
+  width: 138px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 229px;
+  z-index: -1;
+  padding: 10px;
+  left: 18px;
+}
+.titleStore {
+  text-align: center;
+}
+.priceThreeHelper {
+  margin: 0 0 0 0;
+  width: 138px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 305px;
+  z-index: -1;
+  padding: 10px;
+  left: 18px;
+}
