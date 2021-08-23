@@ -13,6 +13,7 @@ class InitialMenu extends React.Component {
       currency: 0,
       storeIsOpen: false,
       helpers: 0,
+      products: [],
     };
 
     this.clicksOnCookie = this.clicksOnCookie.bind(this);
@@ -21,6 +22,16 @@ class InitialMenu extends React.Component {
     this.helpClick = this.helpClick.bind(this);
     this.increaseHelpers = this.increaseHelpers.bind(this);
     this.timersClick = this.timersClick.bind(this);
+  }
+
+  componentDidMount() {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((products) => {
+        this.setState({ products: products }, () =>
+          console.log("Products fethc...", this.state.products)
+        );
+      });
   }
 
   clicksOnCookie() {
@@ -74,6 +85,20 @@ class InitialMenu extends React.Component {
           <p>You have {this.state.currency} cookies</p>
         </div>
         <section>
+          {this.state.products.map(product =>{
+            <li key={product.id}>{product.name} {product.cost}</li>
+          })}
+        </section>
+        <section>
+          <ul>
+            {this.state.products.map((product) => (
+              <li key={product.id}>
+                {product.name} {product.cost}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section>
           <button onClick={this.clicksOnCookie} className="cookieBtn">
             <img
               src={cookieImage}
@@ -96,7 +121,5 @@ class InitialMenu extends React.Component {
     );
   }
 }
-
-
 
 ReactDOM.render(<InitialMenu />, document.getElementById("root"));
