@@ -1,39 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import product from "./interface/product";
+import InitialMenu from "./initialMenu";
 
-type Props = {};
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <InitialMenu />
+  </React.StrictMode>
+);
 
-type State = {
-  currency: number;
-  storeIsOpen: boolean;
-  helpers: number;
-  products: Array<product>;
-};
 
-class InitialMenu extends React.Component<Props, State> {
-  state: State = {
-    currency: 0,
-    storeIsOpen: false,
-    helpers: 0,
-    products: [],
-  };
-
-  // componentDidMount() {
-  //   fetch("/api/products")
-  //     .then((res) => res.json())
-  //     .then((products: product) => {
-
-  //     });
-  // }
-
-  clickOnCookie() {
-    this.setState((state) => ({
-      currency: state.currency + 1,
-    }));
-  }
-
-  render(): React.ReactNode {
-    return <div></div>;
-  }
-}
