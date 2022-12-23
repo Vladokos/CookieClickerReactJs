@@ -1,4 +1,7 @@
 import React from "react";
+
+import Store from "./store";
+
 import product from "./interface/product";
 
 import "./index.css";
@@ -86,7 +89,7 @@ export default class InitialMenu extends React.Component<Props, State> {
         <section>
           {this.state.products.map((product: product) => {
             return (
-              <li key={product.id}>
+              <li key={product.id + 3}>
                 {product.name} {product.cost}
               </li>
             );
@@ -95,7 +98,7 @@ export default class InitialMenu extends React.Component<Props, State> {
         <section>
           <ul>
             {this.state.products.map((product:product) => (
-              <li key={product.id}>
+              <li key={product.id + 1}>
                 {product.name} {product.cost}
               </li>
             ))}
@@ -114,12 +117,12 @@ export default class InitialMenu extends React.Component<Props, State> {
             <img src={storeImage} alt={"store"}></img>
           </button>
         </section>
-        {/* <Store
-          currency={this.state.currency}
-          storeIsOpen={this.state.storeIsOpen}
-          changeCurrency={this.changeCurrency}
-          increaseHelpers={this.increaseHelpers}
-        /> */}
+      <Store
+        currency={this.state.currency}
+        storeIsOpen={this.state.storeIsOpen}
+        changeCurrency={(priceHelpers: number) => this.changeCurrency(priceHelpers)}
+        increaseHelpers={(quantityHelpers: number, priceHelpers: number) => this.increaseHelpers(quantityHelpers, priceHelpers)}
+      />
       </div>
     );
   }
