@@ -5,8 +5,8 @@ import store from "./interface/store";
 type Props = {
   currency: number;
   storeIsOpen: boolean;
-  changeCurrency: Function;
-  increaseHelpers: Function;
+  changeCurrency: (priceHelpers: number) => void;
+  increaseHelpers: (quantityHelpers: number, priceHelpers: number) => void;
 };
 
 type State = {
@@ -104,7 +104,7 @@ export default class Store extends React.Component<Props, State> {
                     this.props.changeCurrency(prices.oneHelper);
                     this.buyHelper(
                       prices.oneHelper,
-                      numberOfAssistants.oneHelper
+                      numberOfAssistants.oneHelper.toString()
                     );
                     this.timerChangeName();
                   }}
@@ -126,7 +126,7 @@ export default class Store extends React.Component<Props, State> {
                     this.props.changeCurrency(prices.twoHelpers);
                     this.buyHelper(
                       prices.twoHelpers,
-                      numberOfAssistants.twoHelpers
+                      numberOfAssistants.twoHelpers.toString()
                     );
                     this.timerChangeName();
                   }}
@@ -148,7 +148,7 @@ export default class Store extends React.Component<Props, State> {
                     this.props.changeCurrency(prices.threeHelpers);
                     this.buyHelper(
                       prices.threeHelpers,
-                      numberOfAssistants.threeHelpers
+                      numberOfAssistants.threeHelpers.toString()
                     );
                     this.timerChangeName();
                   }}
@@ -169,7 +169,7 @@ export default class Store extends React.Component<Props, State> {
               : "popupBalance"
           }
         >
-          you dont have cookies
+          you don't have cookies
         </section>
       </div>
     );
