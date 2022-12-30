@@ -1,15 +1,16 @@
+const {database} = require("./database.js");
+
 const express = require("express");
 const app = express();
 
 app.get("/api/products", (req, res) => {
-  // const ip = req.ip;
-  // console.log(ip);
-  const products = [
-    { id: 1, name: "1help", cost: "1" },
-    { id: 2, name: "2help", cost: "2" },
-    { id: 3, name: "3help", cost: "3" },
-  ];
-  res.json(products);
+   
+  let products;
+  database.query("SELECT * FROM products", (error, results, fields) => {
+    products = results;
+  })
+
+  res.status(200).json(products);
 });
 
 app.listen(5000, () => {
