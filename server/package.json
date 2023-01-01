@@ -6,14 +6,15 @@
   "scripts": {
     "test": "node server.js",
     "serv": "nodemon server.js",
-    "client":"npm start --prefix ../client",
+    "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run serv\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^6.2.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
