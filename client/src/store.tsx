@@ -15,13 +15,13 @@ type State = {
   isClicked: boolean;
 };
 
-const prices:store = {
+const prices: store = {
   oneHelper: 2,
   twoHelpers: 3,
   threeHelpers: 5,
 };
 
-const numberOfAssistants:store = {
+const numberOfAssistants: store = {
   oneHelper: 1,
   twoHelpers: 2,
   threeHelpers: 3,
@@ -40,13 +40,6 @@ export default class Store extends React.Component<Props, State> {
         value: (this.state.value = this.props.currency) - priceHelpers,
         haveCookies: (this.state.haveCookies = true),
       }));
-
-
-
-      let objectKeyPrice:string = Object.keys(numberOfAssistants).find(
-        (key:string) => key === nameHelpers
-      )!;
-      prices[objectKeyPrice] *= priceHelpers;
     } else {
       this.setState((state) => ({
         haveCookies: (this.state.haveCookies = false),
@@ -102,10 +95,7 @@ export default class Store extends React.Component<Props, State> {
                       prices.oneHelper
                     );
                     this.props.changeCurrency(prices.oneHelper);
-                    this.buyHelper(
-                      prices.oneHelper,
-                      numberOfAssistants.oneHelper.toString()
-                    );
+                    this.buyHelper(prices.oneHelper, "oneHelper");
                     this.timerChangeName();
                   }}
                   className="btnStore"
@@ -124,10 +114,7 @@ export default class Store extends React.Component<Props, State> {
                       prices.twoHelpers
                     );
                     this.props.changeCurrency(prices.twoHelpers);
-                    this.buyHelper(
-                      prices.twoHelpers,
-                      numberOfAssistants.twoHelpers.toString()
-                    );
+                    this.buyHelper(prices.twoHelpers, "twoHelpers");
                     this.timerChangeName();
                   }}
                   className="btnStore"
@@ -146,10 +133,7 @@ export default class Store extends React.Component<Props, State> {
                       prices.threeHelpers
                     );
                     this.props.changeCurrency(prices.threeHelpers);
-                    this.buyHelper(
-                      prices.threeHelpers,
-                      numberOfAssistants.threeHelpers.toString()
-                    );
+                    this.buyHelper(prices.threeHelpers, "threeHelpers");
                     this.timerChangeName();
                   }}
                   className="btnStore"
