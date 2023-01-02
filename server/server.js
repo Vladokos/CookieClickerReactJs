@@ -3,6 +3,8 @@ const { database } = require("./database.js");
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
 app.get("/api/products", (req, res) => {
   database.query("SELECT * FROM products", (error, results, fields) => {
     return res.status(200).json(results);
@@ -11,6 +13,7 @@ app.get("/api/products", (req, res) => {
 
 app.post("/api/getData", (req, res) => {
   const { id } = req.body;
+  if(!id) return res.status(400);
 
   database.query(
     `SELECT amountCookies,amountHelpers FROM users WHERE id = '${id}'`,
@@ -21,8 +24,9 @@ app.post("/api/getData", (req, res) => {
 });
 
 app.post("/api/writeData", (req, res) => {
-  console.log(req.body);//fix 'cause get undefined
   const { id, currency, helpers } = req.body;
+  if(!id && currency === null && helpers === null) return res.status(400);
+  console.log(req.body);
   database.query(
     `SELECT * FROM users WHERE id = '${id}'`,
     (error, results, fields) => {
@@ -39,7 +43,7 @@ app.post("/api/writeData", (req, res) => {
     }
   );
 
- return res.status(200);
+  return res.status(200);
 });
 
 app.listen(5000, () => {
