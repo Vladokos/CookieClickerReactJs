@@ -115,6 +115,9 @@ button {
   border-radius: 30px;
   padding: 10px;
 }
+.saveBtn {
+  cursor: pointer;
+}
 .priceOneHelper {
   margin: 0 0 0 0;
   width: 138px;
